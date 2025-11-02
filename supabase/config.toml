@@ -1,0 +1,4 @@
+project_id = "bggaeemkonwbdqgrklzn"
+
+[functions.trading-engine]
+verify_jwt = false

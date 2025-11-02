@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Modern green gradient theme */
+    --background: 147 55% 8%;
+    --foreground: 0 0% 98%;
+    --card: 147 35% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 147 35% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 147 73% 55%;
+    --primary-foreground: 147 55% 8%;
+    --secondary: 147 35% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 147 25% 20%;
+    --muted-foreground: 147 15% 65%;
+    --accent: 147 73% 45%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 147 25% 25%;
+    --input: 147 25% 18%;
+    --ring: 147 73% 55%;
+    --chart-1: 147 73% 55%;
+    --chart-2: 147 60% 45%;
+    --chart-3: 147 40% 35%;
+    --chart-4: 147 80% 65%;
+    --chart-5: 147 90% 75%;
+    --radius: 1rem;
+    
+    /* Device-aware variables */
+    --device-width: 100vw;
+    --device-height: 100vh;
+    --screen-width: 100vw;
+    --screen-height: 100vh;
+    --pixel-ratio: 1;
+    
+    /* Custom gradient variables */
+    --gradient-primary: linear-gradient(135deg, hsl(147 55% 8%) 0%, hsl(147 35% 12%) 50%, hsl(147 45% 15%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(147 35% 12%) 0%, hsl(147 25% 14%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(147 73% 55%) 0%, hsl(147 60% 45%) 100%);
+    --shadow-glow: 0 0 30px hsl(147 73% 55% / 0.3);
+    
+    /* Trust Wallet specific colors - updated for green theme */
+    --trust-blue: 147 73% 55%;
+    --trust-blue-light: 147 73% 65%;
+    --trust-blue-dark: 147 60% 45%;
+    --trust-surface: 147 35% 12%;
+    --trust-surface-light: 147 25% 14%;
+    --trust-border: 147 25% 25%;
+    --trust-text: 0 0% 95%;
+    --trust-text-muted: 147 15% 60%;
+    
+    /* Trading colors */
+    --profit: 142 69% 58%;
+    --loss: 0 62% 55%;
+    --warning: 45 93% 58%;
+    --info: 147 73% 55%;
+    --success: 142 69% 58%;
+    
+    /* Modern gradients and effects */
+    --trust-gradient: var(--gradient-accent);
+    --trust-gradient-subtle: linear-gradient(135deg, hsl(147 73% 55% / 0.1), hsl(147 60% 45% / 0.1));
+    --trust-shadow: 0 4px 20px hsl(147 73% 55% / 0.1);
+    --trust-glow: 0 0 30px hsl(147 73% 55% / 0.2);
+    --glass-pattern: linear-gradient(145deg, hsl(147 35% 12% / 0.9), hsl(147 25% 10% / 0.9));
+
+    --sidebar-background: 147 45% 10%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 147 73% 55%;
+    --sidebar-primary-foreground: 147 55% 8%;
+    --sidebar-accent: 147 35% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 147 25% 25%;
+    --sidebar-ring: 147 73% 55%;
+  }
+
+  .dark {
+    /* Enhanced dark mode with green theme */
+    --background: 147 55% 8%;
+    --foreground: 0 0% 98%;
+    --card: 147 35% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 147 35% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 147 73% 55%;
+    --primary-foreground: 147 55% 8%;
+    --secondary: 147 35% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 147 25% 20%;
+    --muted-foreground: 147 15% 65%;
+    --accent: 147 73% 45%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 147 25% 25%;
+    --input: 147 25% 18%;
+    --ring: 147 73% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--gradient-primary);
+    color: hsl(var(--foreground));
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  /* Touch-friendly spacing for mobile devices */
+  .touch-device button,
+  .touch-device a {
+    min-height: 44px; /* Apple's recommended touch target size */
+    min-width: 44px;
+  }
+  
+  /* Mobile-specific spacing improvements */
+  @media (max-width: 640px) {
+    .trust-card,
+    .trust-glass,
+    .trust-border,
+    .trust-symbol-card {
+      border-radius: 0.75rem; /* Slightly smaller radius on mobile */
+    }
+    
+    /* Ensure proper spacing between elements on mobile */
+    .space-y-4 > * + * {
+      margin-top: 0.75rem;
+    }
+    
+    /* Better text wrapping on mobile */
+    h1, h2, h3, h4, h5, h6 {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+  }
+
+  /* High DPI displays */
+  .high-dpi {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Modern gradient backgrounds */
+  .trust-gradient {
+    background: var(--gradient-primary);
+    min-height: 100vh;
+  }
+
+  .trust-gradient-text {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .trust-card-gradient {
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-glow);
+  }
+
+  .auth-gradient {
+    background: linear-gradient(135deg, 
+      hsl(147 55% 8%) 0%, 
+      hsl(147 45% 10%) 50%, 
+      hsl(147 35% 12%) 100%
+    );
+  }
+}
+
+@layer components {
+  /* Modern Green Theme Components */
+  .trust-card {
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    border-radius: 1rem;
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .trust-glass {
+    background: var(--glass-pattern);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .trust-glow {
+    filter: drop-shadow(var(--trust-glow));
+  }
+
+  .trust-border {
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    backdrop-filter: blur(20px);
+    border-radius: 1rem;
+  }
+
+  .trust-symbol-card {
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    backdrop-filter: blur(16px);
+    border-radius: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  }
+
+  .trust-symbol-card:hover {
+    transform: translateY(-2px);
+    border-color: hsl(var(--primary) / 0.4);
+    box-shadow: var(--shadow-glow), 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+}
